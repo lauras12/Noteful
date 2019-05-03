@@ -3,6 +3,7 @@ import Note from '../Note/Note';
 import { findNote } from '../notes-helpers';
 import './NotePageMain.css';
 import NoteContext from '../NoteContext';
+import PropTypes from 'prop-types';
 
 export default class NotePageMain extends Component {
   static contextType = NoteContext;
@@ -31,4 +32,8 @@ NotePageMain.defaultProps = {
   note: {
     content: ''
   }
+};
+
+NotePageMain.propTypes = {
+  noteId: PropTypes.string
 };

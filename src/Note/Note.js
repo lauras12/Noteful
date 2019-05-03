@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Note.css';
 
@@ -35,3 +36,10 @@ class Note extends Component {
 }
 
 export default withRouter(Note);
+
+Note.propTypes = {
+  modified: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  handleDelete: PropTypes.func
+};

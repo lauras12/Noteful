@@ -101,7 +101,6 @@ class App extends Component {
   };
 
   handleAddNote = note => {
-    //add note to list of notes to end of notes
     this.setState({ notes: [...this.state.notes, note] }, () =>
       this.props.history.replace('/')
     );

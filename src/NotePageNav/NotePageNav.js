@@ -1,7 +1,8 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import CircleButton from '../CircleButton/CircleButton'
-import './NotePageNav.css'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CircleButton from '../CircleButton/CircleButton';
+import PropTypes from 'prop-types';
+import './NotePageNav.css';
 
 export default function NotePageNav(props) {
   return (
@@ -17,16 +18,18 @@ export default function NotePageNav(props) {
         Back
       </CircleButton>
       {props.folder && (
-        <h3 className='NotePageNav__folder-name'>
-          {props.folder.name}
-        </h3>
+        <h3 className='NotePageNav__folder-name'>{props.folder.name}</h3>
       )}
     </div>
-  )
+  );
 }
 
 NotePageNav.defaultProps = {
   history: {
     goBack: () => {}
   }
-}
+};
+
+NotePageNav.PropTypes = {
+  folder: PropTypes.object
+};

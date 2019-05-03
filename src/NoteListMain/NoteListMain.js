@@ -1,20 +1,21 @@
-import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Note from '../Note/Note'
-import CircleButton from '../CircleButton/CircleButton'
-import './NoteListMain.css'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Note from '../Note/Note';
+import CircleButton from '../CircleButton/CircleButton';
+import './NoteListMain.css';
 import NoteContext from '../NoteContext';
-import { getNotesForFolder } from '../notes-helpers'
+import { getNotesForFolder } from '../notes-helpers';
+import PropTypes from 'prop-types';
 
 export default class NoteListMain extends Component {
   static contextType = NoteContext;
-  render() {  
+  render() {
     const { folderId } = this.props.match.params;
-  return (
+    return (
       <section className='NoteListMain'>
         <ul>
-          {getNotesForFolder(this.context.notes, folderId).map(note =>
+          {getNotesForFolder(this.context.notes, folderId).map(note => (
             <li key={note.id}>
               <Note
                 handleDelete={this.context.handleDelete}
@@ -23,7 +24,7 @@ export default class NoteListMain extends Component {
                 modified={note.modified}
               />
             </li>
-          )}
+          ))}
         </ul>
         <div className='NoteListMain__button-container'>
           <CircleButton
@@ -38,9 +39,13 @@ export default class NoteListMain extends Component {
           </CircleButton>
         </div>
       </section>
-    )}   
+    );
+  }
 }
 
 NoteListMain.defaultProps = {
-  notes: [],
-}
+  notes: []
+};
+NoteListMain.propTypes = {
+  folderId: PropTypes.string
+};
