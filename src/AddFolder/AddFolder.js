@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import cuid from 'cuid';
 import NotefulForm from '../NotefulForm/NotefulForm';
 import './AddFolder.css';
 import NoteContext from '../NoteContext';
@@ -41,7 +40,7 @@ export default class AddFolder extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        id: cuid(),
+        // id: cuid(),
         name: this.state.name
       })
     };

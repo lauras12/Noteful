@@ -8,6 +8,7 @@ import NoteListMain from '../NoteListMain/NoteListMain';
 import NotePageMain from '../NotePageMain/NotePageMain';
 import AddFolder from '../AddFolder/AddFolder';
 import AddNote from '../AddNote/AddNote';
+import NotefulError from '../NotefulError/NotefulError';
 import { findNote, findFolder } from '../notes-helpers';
 import './App.css';
 
@@ -78,10 +79,13 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          notes: newNotes,
-          error: null
-        });
+        this.setState(
+          {
+            notes: newNotes,
+            error: null
+          },
+          () => this.props.history.replace('/')
+        );
       })
       .catch(err => {
         this.setState({
@@ -164,14 +168,18 @@ class App extends Component {
         }}
       >
         <div className='App'>
-          <nav className='App__nav'>{this.renderNavRoutes()}</nav>
+          <NotefulError>
+            <nav className='App__nav'>{this.renderNavRoutes()}</nav>
+          </NotefulError>
           <header className='App__header'>
             <h1>
               <Link to='/'>Noteful</Link>{' '}
               <FontAwesomeIcon icon='check-double' />
             </h1>
           </header>
-          <main className='App__main'>{this.renderMainRoutes()}</main>
+          <NotefulError>
+            <main className='App__main'>{this.renderMainRoutes()}</main>
+          </NotefulError>
         </div>
       </NoteContext.Provider>
     );
